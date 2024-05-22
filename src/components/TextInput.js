@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+// Defining the TextInput component
 const TextInput = () => {
   const [text, setText] = useState('');
 
+  // Handling form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (text.trim()) {
+      // Posting the tweet to the backend
       await axios.post(`${process.env.REACT_APP_TWOTTER_BACKEND_URL}/tweets`, { text });
       setText('');
     }
   };
 
+  // Rendering the form
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-md">
       <textarea
@@ -27,4 +31,5 @@ const TextInput = () => {
   );
 };
 
+// Exporting the TextInput component
 export default TextInput;
